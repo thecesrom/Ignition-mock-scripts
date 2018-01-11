@@ -30,6 +30,9 @@ def toDataSet(*args):
     """This function is used to 1) convert PyDataSets to DataSets, and 2) create new datasets from
     raw Python lists. When creating a new dataset, headers should have unique names.
 
+    1) system.dataset.toDataSet(dataset)
+    2) system.dataset.toDataSet(headers, data)
+
     Args:
         args: A variable-length argument list.
 

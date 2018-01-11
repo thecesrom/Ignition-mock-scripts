@@ -25,7 +25,7 @@ def sendEmail(smtp, fromAddr, subject, body, html, to, priority='3'):
         html (bool): A flag indicating whether or not to send the email as an HTML email. Will
             auto-detect if omitted.
         to (list[str]): A list of email addresses to send to.
-        priority (str): Priority for the message, from "1" to "5", with "1" being highest priority.
-            Defaults to "3" (normal) priority.
+        priority (Optional[str]): Priority for the message, from "1" to "5", with "1" being highest
+            priority. Defaults to "3" (normal) priority.
     """
     print(smtp, fromAddr, subject, body, html, to, priority)

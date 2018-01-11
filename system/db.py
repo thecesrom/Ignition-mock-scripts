@@ -121,13 +121,13 @@ def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
 
     Args:
         procedureName (str): The named of the stored procedure to call.
-        database (str): The name of the database connection to execute against. If omitted or "",
-            the project's default database connection will be used.
-        tx (str): A transaction identifier. If omitted, the call will be executed in its own
-            transaction.
-        skipAudit (bool): A flag which, if set to true, will cause the procedure call to skip the
-            audit system. Useful for some queries that have fields which won't fit into the audit
-            log.
+        database (Optional[str]): The name of the database connection to execute against. If omitted
+            or "", the project's default database connection will be used.
+        tx ((Optional[str]): A transaction identifier. If omitted, the call will be executed in its
+            own transaction.
+        skipAudit ((Optional[bool]): A flag which, if set to true, will cause the procedure call to
+            skip the audit system. Useful for some queries that have fields which won't fit into the
+            audit log.
 
     Returns:
         SProcCall: A stored procedure call context, which can be configured and then used as the

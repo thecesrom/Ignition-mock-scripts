@@ -8,7 +8,9 @@ The following functions give you access to interact with the users and roles in 
 
 __all__ = [
     'getRoles',
-    'getUsername'
+    'getUsername',
+    'getUserRoles',
+    'validateUser'
 ]
 
 
@@ -29,3 +31,43 @@ def getUsername():
         str: The current username.
     """
     return 'johdoe'
+
+
+def getUserRoles(username, password, authProfile='', timeout=60000):
+    """Fetches the roles for a user from the Gateway. This may not be the currently logged in user.
+    Requires the password for that user. If the authentication profile name is omitted, then the
+    current project's default authentication profile is used.
+
+    Args:
+        username (str): The username to fetch roles for.
+        password (str): The password for the user.
+        authProfile (Optional[str]): The name of the authentication profile to run against.
+            Optional. Leaving this out will use the project's default profile.
+        timeout (Optional[int]): Timeout for client-to-gateway communication. (default: 60,000ms)
+
+    Returns:
+        tuple: A list of the roles that this user has, if the user authenticates successfully.
+            Otherwise, returns None.
+    """
+    print(username, password, authProfile, timeout)
+    return 'Administrator', 'Developer'
+
+
+def validateUser(username, password, authProfile='', timeout=60000):
+    """Tests credentials (username and password) against an authentication profile. Returns a
+    boolean based upon whether or not the authentication profile accepts the credentials. If the
+    authentication profile name is omitted, then the current project's default authentication
+    profile is used.
+
+    Args:
+        username (str): The username to validate.
+        password (str): The password for the user.
+        authProfile (Optional[str]): The name of the authentication profile to run against.
+            Optional. Leaving this out will use the project's default profile.
+        timeout (Optional[int]): Timeout for client-to-gateway communication. (default: 60,000ms)
+    Returns:
+        bool: false(0) if the user failed to authenticate, true(1) if the username/password was a
+            valid combination.
+    """
+    print(username, password, authProfile, timeout)
+    return True
