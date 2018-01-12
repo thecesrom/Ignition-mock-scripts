@@ -21,7 +21,7 @@ def getRoles():
     Returns:
         tuple: A list of the roles (strings) that are assigned to the current user.
     """
-    return ('Administrator', 'Developer')
+    return 'Administrator', 'Developer'
 
 
 def getUsername():
