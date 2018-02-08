@@ -7,6 +7,9 @@
 The following functions give you access to view and modify data in the database."""
 
 __all__ = [
+    'beginTransaction',
+    'closeTransaction',
+    'commitTransaction',
     'createSProcCall',
     'execSProcCall'
 ]
@@ -116,6 +119,63 @@ class _SProcCall(object):
         print typeCode
 
 
+def beginTransaction(database=None, isolationLevel=None, timeout=None):
+    """Begins a new database transaction. Database transactions are used to execute multiple queries
+    in an atomic fashion. After executing queries, you must either commit the transaction to have
+    your changes take effect, or rollback the transaction which will make all operations since the
+    last commit not take place. The transaction is given a new unique string code, which is then
+    returned. You can then use this code  as the tx argument for other system.db.* function calls to
+    execute various types of queries using this transaction.
+
+    An open transaction consumes one database connection until it is closed. Because leaving
+    connections open indefinitely would exhaust the connection pool, each transaction is given a
+    timeout. Each time the transaction is used, the timeout timer is reset. For example, if you make
+    a transaction with a timeout of one minute, you must use that transaction at least once a
+    minute. If a transaction is detected to have timed out, it will be automatically closed and its
+    transaction id will no longer be valid.
+
+    Args:
+        database (Optional[str]): The name of the database connection to create a transaction in.
+            Use "" for the project's default connection.
+        isolationLevel (Optional[int]): The transaction isolation level to use. Use one of the four
+            constants: system.db.READ_COMMITTED, system.db.READ_UNCOMMITTED,
+            system.db.REPEATABLE_READ, or system.db.SERIALIZABLE.
+        timeout (Optional[long]): The amount of time, in milliseconds, that this connection is
+            allowed to remain open without being used. Timeout counter is reset any time a query or
+            call is executed against the transaction, or when committed or rolled-back.
+
+    Returns:
+        str: The new transaction ID. You'll use this ID as the "tx" argument for all other calls to
+        have them execute against this transaction.
+    """
+    print(database, isolationLevel, timeout)
+    return 'transaction_id'
+
+
+def closeTransaction(tx):
+    """Closes the transaction with the given ID. Note that you must commit or rollback the
+    transaction before you close it. Closing the transaction will return its database connection to
+    the pool. The transaction ID will no longer be valid.
+
+    Args:
+        tx (str): The transaction ID.
+    """
+    print tx
+
+
+def commitTransaction(tx):
+    """Performs a commit for the given transaction. This will make all statements executed against
+    the transaction since its beginning or since the last commit or rollback take effect in the
+    database. Until you commit a transaction, any changes that the transaction makes will not be
+    visible to other connections. Note that if you are done with the transaction, you must close it
+    after you commit it.
+
+    Args:
+        tx (str): The transaction ID.
+    """
+    print tx
+
+
 def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
     """Creates an SProcCall object, which is a stored procedure call context.
 
@@ -123,9 +183,9 @@ def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
         procedureName (str): The named of the stored procedure to call.
         database (Optional[str]): The name of the database connection to execute against. If omitted
             or "", the project's default database connection will be used.
-        tx ((Optional[str]): A transaction identifier. If omitted, the call will be executed in its
+        tx (Optional[str]): A transaction identifier. If omitted, the call will be executed in its
             own transaction.
-        skipAudit ((Optional[bool]): A flag which, if set to true, will cause the procedure call to
+        skipAudit (Optional[bool]): A flag which, if set to true, will cause the procedure call to
             skip the audit system. Useful for some queries that have fields which won't fit into the
             audit log.
 
