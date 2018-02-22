@@ -212,9 +212,9 @@ def execSProcCall(callContext):
 
 
 def rollbackTransaction(tx):
-    """Performs a rollback on the given connection. This will make all statements executed against this transaction
-    since its beginning or since the last commit  or rollback undone. Note that if you are done with the transaction,
-    you must also close it after you do a rollback on it.
+    """Performs a rollback on the given connection. This will make all statements executed against
+    this transaction since its beginning or since the last commit  or rollback undone. Note that
+    if you are done with the transaction, you must also close it after you do a rollback on it.
 
     Args:
         tx (str): The transaction ID.
