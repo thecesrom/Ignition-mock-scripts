@@ -8,7 +8,10 @@ The following functions give you access to interact with Ignition Tags."""
 
 __all__ = [
     'browseTags',
-    'read'
+    'read',
+    'readAll,'
+    'write',
+    'writeAll'
 ]
 
 
@@ -63,3 +66,54 @@ def read(tagPath):
             timestamp.
     """
     print tagPath
+
+
+def readAll(tagPaths):
+    """Reads the values of each tag in the tag path list. Returns a sequence of qualified value
+    objects. You can read the value, quality, and timestamp from each  object in the return
+    sequence. Reading in bulk like this is more efficient than calling read() many times.
+
+    Args:
+        tagPaths (list[str]): A sequence of tag paths to read from.
+
+    Returns:
+        list[QualifiedValue]: A sequence of qualified values corresponding to each tag path
+        given. Each qualified value will have three sub-members: value, quality, and timestamp.
+    """
+    print(tagPaths)
+    return [1] * len(tagPaths)
+
+
+def write(tagPath, value, supressErrors=False):
+    """Writes a value to a tag. Note that this function writes asynchronously. This means that
+    the function does not wait for the write to occur before returning - the write occurs
+    sometime later on a different thread.
+
+    Args:
+        tagPath (str): The path of the tag to write to.
+        value (object): The value to write.
+        supressErrors (Optional[bool]): A flag indicating whether or not to suppress errors.
+
+    Returns:
+        int: 0 if the write failed immediately, 1 if it succeeded immediately, and 2 if it is
+        pending.
+    """
+    print(tagPath, value, supressErrors)
+    return 1
+
+
+def writeAll(tagPaths, values):
+    """Performs an asynchronous bulk write. Takes to sequences that must have the same number of
+    entries. The first is the list of tag paths to write to, and the second is a list of values
+    to write.This function is dramatically more efficient than calling write multiple times.
+
+    Args:
+        tagPaths (list[str]): The paths of the tags to write to.
+        values (list[object[): The values to write.
+
+    Returns:
+        list[int]: Array of ints with an element for each tag written to: 0 if the write failed
+            immediately, 1 if it succeeded immediately, and 2 if it is pending.
+    """
+    print(tagPaths, values)
+    return [1] * len(tagPaths)

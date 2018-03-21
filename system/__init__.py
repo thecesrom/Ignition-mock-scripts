@@ -5,7 +5,6 @@
 """A package for Ignition mock scripts."""
 
 __all__ = [
-    'date',
     'dataset',
     'date',
     'db',
