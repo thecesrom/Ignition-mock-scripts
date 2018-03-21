@@ -9,7 +9,7 @@ The following functions give you access to interact with Ignition Tags."""
 __all__ = [
     'browseTags',
     'read',
-    'readAll,'
+    'readAll',
     'write',
     'writeAll'
 ]
