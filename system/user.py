@@ -47,7 +47,7 @@ class User(object):
         and valueproperty representing the contact information, both strings.
 
         Returns:
-            list: A sequence of ContactInfo objects.
+            list[ContactInfo]: A sequence of ContactInfo objects.
         """
         ci_email = ContactInfo('email', 'johdoe@mycompany.com')
         ci_phone = ContactInfo('phone', '+1 5551324567')
@@ -79,7 +79,7 @@ class User(object):
         """Returns a sequence of strings representing the roles that this user belongs to
 
         Returns:
-             list: Sequence of strings representing the roles that this user belongs to.
+             list[str]: Sequence of strings representing the roles that this user belongs to.
         """
         return User.Roles
 

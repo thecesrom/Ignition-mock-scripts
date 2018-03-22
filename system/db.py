@@ -87,7 +87,7 @@ class _SProcCall(object):
             param: Index (int) or name (str) of the previously registered out-parameter.
 
         Returns:
-            value: The value of the previously registered out-parameter.
+            object: The value of the previously registered out-parameter.
         """
         print param
         return 0

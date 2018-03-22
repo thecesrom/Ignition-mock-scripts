@@ -84,7 +84,7 @@ def readAll(tagPaths):
     return [1] * len(tagPaths)
 
 
-def write(tagPath, value, supressErrors=False):
+def write(tagPath, value, suppressErrors=False):
     """Writes a value to a tag. Note that this function writes asynchronously. This means that
     the function does not wait for the write to occur before returning - the write occurs
     sometime later on a different thread.
@@ -92,13 +92,13 @@ def write(tagPath, value, supressErrors=False):
     Args:
         tagPath (str): The path of the tag to write to.
         value (object): The value to write.
-        supressErrors (Optional[bool]): A flag indicating whether or not to suppress errors.
+        suppressErrors (Optional[bool]): A flag indicating whether or not to suppress errors.
 
     Returns:
         int: 0 if the write failed immediately, 1 if it succeeded immediately, and 2 if it is
         pending.
     """
-    print(tagPath, value, supressErrors)
+    print(tagPath, value, suppressErrors)
     return 1
 
 

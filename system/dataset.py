@@ -20,7 +20,7 @@ def getColumnHeaders(dataset):
         dataset (Dataset): The input dataset.
 
     Returns:
-        list: A list of column header strings.
+        list[str]: A list of column header strings.
     """
     print dataset
     return []

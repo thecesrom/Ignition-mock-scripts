@@ -19,7 +19,7 @@ def getRoles():
     strings.
 
     Returns:
-        tuple: A list of the roles (strings) that are assigned to the current user.
+        tuple[str]: A list of the roles (strings) that are assigned to the current user.
     """
     return 'Administrator', 'Developer'
 
@@ -46,7 +46,7 @@ def getUserRoles(username, password, authProfile='', timeout=60000):
         timeout (Optional[int]): Timeout for client-to-gateway communication. (default: 60,000ms)
 
     Returns:
-        tuple: A list of the roles that this user has, if the user authenticates successfully.
+        tuple[str]: A list of the roles that this user has, if the user authenticates successfully.
             Otherwise, returns None.
     """
     print(username, password, authProfile, timeout)
