@@ -103,7 +103,7 @@ def write(tagPath, value, suppressErrors=False):
 
 
 def writeAll(tagPaths, values):
-    """Performs an asynchronous bulk write. Takes to sequences that must have the same number of
+    """Performs an asynchronous bulk write. Takes two sequences that must have the same number of
     entries. The first is the list of tag paths to write to, and the second is a list of values
     to write.This function is dramatically more efficient than calling write multiple times.
 
