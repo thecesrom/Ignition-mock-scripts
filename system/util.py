@@ -33,6 +33,20 @@ def getProjectName():
     return 'MyProject'
 
 
+def jsonDecode(jsonString):
+    """Takes a json String and converts it into a Python object such as a list or a dict. If the
+    input is not valid json, a string is returned.
+
+    Args:
+        jsonString (str): The JSON string to decode into a Python object.
+
+    Returns:
+        object: The decoded Python object.
+    """
+    print(jsonString)
+    return object
+
+
 def setLocale(locale):
     """Sets the user's current Locale. Any valid Java locale code (case-insensitive) can be used as
     a parameter, including ones that have not yet been added to the Translation Manager. An invalid
