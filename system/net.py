@@ -21,24 +21,26 @@ def httpGet(url, connectTimeout=10000, readTimeout=60000, username=None, passwor
 
     Args:
         url (str): The URL to retrieve.
-        connectTimeout (int): The timeout for connecting to the URL. In milliseconds. Default is
+        connectTimeout (Optional[int]): The timeout for connecting to the URL. In milliseconds.
+        Default is
             10,000.
-        readTimeout (int): The read timeout for the get operation. In milliseconds. Default is
-            60,000.
-        username (str): If specified, the call will attempt to authenticate with basic HTTP
-            authentication.
-        password (str): The password used for basic HTTP authentication, if the username
+        readTimeout (Optional[int]): The read timeout for the get operation. In milliseconds.
+            Default is 60,000.
+        username (Optional[str]): If specified, the call will attempt to authenticate with basic
+            HTTP authentication.
+        password (Optional[str]): The password used for basic HTTP authentication, if the username
             parameter is also present.
-        headerValues (dict): A dictionary of name/value pairs that will be set in the HTTP header.
-        bypassCertValidation (bool): If the target address is an HTTPS address, and this
+        headerValues (Optional[dict]): A dictionary of name/value pairs that will be set in the
+            HTTP header.
+        bypassCertValidation (Optional[bool]): If the target address is an HTTPS address, and this
             parameter is True, the system will bypass all SSL certificate validation. This is not
             recommended, though is sometimes necessary for self-signed certificates.
-        useCaches (bool): Will cache the information returned by the httpGet call. If using this
-            for something that constantly updates like an rss feed, it would be better to set
-            this to False. Default is True.
-        throwOnError (bool): Set to False if you wish to get the error body rather than a Python
-            exception if the GET request returns an error code (non-200 responsive). Default is
-            True.
+        useCaches (Optional[bool]): Will cache the information returned by the httpGet call. If
+            using this for something that constantly updates like an rss feed, it would be better to
+            set this to False. Default is True.
+        throwOnError (Optional[bool]): Set to False if you wish to get the error body rather than a
+            Python exception if the GET request returns an error code (non-200 responsive).
+            Default is True.
 
     Returns:
         str: The content found at the given URL.

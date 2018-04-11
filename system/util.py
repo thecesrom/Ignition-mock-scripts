@@ -8,11 +8,41 @@ The following functions give you access to view various Gateway and Client data,
 with other various systems."""
 
 __all__ = [
+    'beep',
     'getGatewayAddress',
     'getProjectName',
+    'jsonDecode',
+    'jsonEncode',
     'setLocale',
     'translate'
 ]
+
+
+def beep():
+    """Tells the computer to make a "beep" sound."""
+    import sys
+    platforms = {
+        'linux1': 'Linux',
+        'linux2': 'Linux',
+        'darwin': 'OS X',
+        'win32': 'Windows',
+    }
+
+    if sys.platform in platforms:
+        if platforms[sys.platform] == 'Windows':
+            try:
+                import winsound
+                winsound.MessageBeep()
+            except ImportError:
+                print('Beep!')
+        elif platforms[sys.platform] == 'OS X':
+            import os
+            os.system('say "beep"')
+        elif platforms[sys.platform] == 'Linux':
+            # TODO: Make Linux speak.
+            print('Beep!')
+    else:
+        print('Beep!')
 
 
 def getGatewayAddress():
@@ -41,10 +71,25 @@ def jsonDecode(jsonString):
         jsonString (str): The JSON string to decode into a Python object.
 
     Returns:
-        object: The decoded Python object.
+        dict: The decoded Python object.
     """
     print(jsonString)
-    return object
+    return {'key': 'value'}
+
+
+def jsonEncode(pyObj, indentFactor=4):
+    """Takes a Python object such as a list or dict and converts into a json string.
+
+    Args:
+        pyObj (object): The Python object to encode into JSON such as a Python list or dictionary.
+            indentFactor (Optional[int]): The number of spaces to add to each level of indentation
+            for prettyprinting.
+
+    Returns:
+        str: The encoded JSON string.
+    """
+    print(pyObj, indentFactor)
+    return ''
 
 
 def setLocale(locale):
