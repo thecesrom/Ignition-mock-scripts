@@ -82,7 +82,7 @@ def jsonEncode(pyObj, indentFactor=4):
 
     Args:
         pyObj (object): The Python object to encode into JSON such as a Python list or dictionary.
-            indentFactor (Optional[int]): The number of spaces to add to each level of indentation
+        indentFactor (Optional[int]): The number of spaces to add to each level of indentation
             for prettyprinting.
 
     Returns:
