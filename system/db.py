@@ -52,7 +52,7 @@ NVARCHAR = -9
 LONGNVARCHAR = -16
 
 
-class _SProcCall(object):
+class SProcCall(object):
     def __init__(self):
         pass
 
@@ -136,18 +136,18 @@ def beginTransaction(database=None, isolationLevel=None, timeout=None):
     transaction id will no longer be valid.
 
     Args:
-        database (Optional[str]): The name of the database connection to create a transaction in.
-            Use "" for the project's default connection.
-        isolationLevel (Optional[int]): The transaction isolation level to use. Use one of the four
+        database (str): The name of the database connection to create a transaction in.
+            Use "" for the project's default connection. Optional.
+        isolationLevel (int): The transaction isolation level to use. Use one of the four
             constants: system.db.READ_COMMITTED, system.db.READ_UNCOMMITTED,
-            system.db.REPEATABLE_READ, or system.db.SERIALIZABLE.
-        timeout (Optional[long]): The amount of time, in milliseconds, that this connection is
+            system.db.REPEATABLE_READ, or system.db.SERIALIZABLE. Optional.
+        timeout (long): The amount of time, in milliseconds, that this connection is
             allowed to remain open without being used. Timeout counter is reset any time a query or
-            call is executed against the transaction, or when committed or rolled-back.
+            call is executed against the transaction, or when committed or rolled-back. Optional.
 
     Returns:
         str: The new transaction ID. You'll use this ID as the "tx" argument for all other calls to
-        have them execute against this transaction.
+            have them execute against this transaction.
     """
     print(database, isolationLevel, timeout)
     return 'transaction_id'
@@ -182,20 +182,20 @@ def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
 
     Args:
         procedureName (str): The named of the stored procedure to call.
-        database (Optional[str]): The name of the database connection to execute against. If omitted
-            or "", the project's default database connection will be used.
-        tx (Optional[str]): A transaction identifier. If omitted, the call will be executed in its
-            own transaction.
-        skipAudit (Optional[bool]): A flag which, if set to true, will cause the procedure call to
-            skip the audit system. Useful for some queries that have fields which won't fit into the
-            audit log.
+        database (str): The name of the database connection to execute against. If omitted or "",
+            the project's default database connection will be used. Optional.
+        tx (str): A transaction identifier. If omitted, the call will be executed in its own
+            transaction. Optional.
+        skipAudit (bool): A flag which, if set to true, will cause the procedure call to skip the
+            audit system. Useful for some queries that have fields which won't fit into the audit
+            log. Optional.
 
     Returns:
         SProcCall: A stored procedure call context, which can be configured and then used as the
             argument to system.db.execSProcCall.
     """
     print(procedureName, database, tx, skipAudit)
-    return _SProcCall()
+    return SProcCall()
 
 
 def execSProcCall(callContext):

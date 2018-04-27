@@ -15,6 +15,61 @@ __all__ = [
 ]
 
 
+class BrowseTag(object):
+    """BrowseTag class."""
+
+    def __init__(self,
+                 name=None,
+                 path=None,
+                 _type=None,
+                 dataType=None):
+        """BrowseTag initializer.
+
+        Args:
+            name (str): The name of the tag.
+            path (str): The path of the tag.
+            _type (object): The type of the tag.
+            dataType (object): The data type of the tag.
+        """
+        self.name = name
+        self.path = path
+        self.type = _type
+        self.dataType = dataType
+
+    def isDB(self):
+        return True
+
+    def isExpression(self):
+        return True
+
+    def isFolder(self):
+        return True
+
+    def isMemory(self):
+        return True
+
+    def isOPC(self):
+        return True
+
+    def isQuery(self):
+        return True
+
+    def isUDT(self):
+        return True
+
+
+class QualifiedValue(object):
+    """QualifiedValue class"""
+
+    def __init__(self,
+                 value=None,
+                 quality=None,
+                 timestamp=None):
+        self.value = value
+        self.quality = quality
+        self.timestamp = timestamp
+
+
 def browseTags(parentPath, tagPath=None, tagType=None, dataType=None, udtParentType=None,
                recursive=False, sort='ASC'):
     """Returns an array of tags from a specific folder. The function supports filtering and
@@ -27,19 +82,19 @@ def browseTags(parentPath, tagPath=None, tagType=None, dataType=None, udtParentT
             specify the tag provider name in square brackets at the beginning of the parentPath
             string. Example: "[myTagProvider]MyTagsFolder". If the tag provider name is left off
             then the project default provider will be used.
-        tagPath (Optional[str]): Filters on a tag path. Use * as a wildcard for any number of
-            characters and a ? for a single character.
-        tagType (Optional[str]): Filters on a tag type. Possible values are OPC, MEMORY, DB, QUERY,
-            Folder, DERIVED and UDT_INST.
-        dataType (Optional[str]): The data type of the tag. Not used for UDT instances or folders.
-            Possible values are Int1, Int2, Int4, Int8, Float4, Float8, Boolean, String, and
-            DateTime.
-        udtParentType (Optional[str]): The name of the parent UDT.
-        recursive (Optional[bool]): Recursively search for tags inside of folders. Note: It is
-            highly recommended that recursive is set to false, as server timeouts are more likely to
-            occur.
-        sort (Optional[str]): Sets the sort order, possible values are ASC and DESC. Sorting is done
-            on the full path of the tag.
+        tagPath (str): Filters on a tag path. Use * as a wildcard for any number of characters
+            and a ? for a single character. Optional.
+        tagType (str): Filters on a tag type. Possible values are OPC, MEMORY, DB, QUERY, Folder,
+            DERIVED and UDT_INST. Optional.
+        dataType (str): The data type of the tag. Not used for UDT instances or folders. Possible
+            values are Int1, Int2, Int4, Int8, Float4, Float8, Boolean, String, and DateTime.
+            Optional.
+        udtParentType (str): The name of the parent UDT.
+        recursive (bool): Recursively search for tags inside of folders. Note: It is highly
+            recommended that recursive is set to false, as server timeouts are more likely to occur.
+            Optional.
+        sort (str): Sets the sort order, possible values are ASC and DESC. Sorting is done on the
+            full path of the tag. Optional.
 
     Returns:
         list[BrowseTag]: An array of BrowseTag. BrowseTag has the following variables: name, path,
@@ -47,6 +102,7 @@ def browseTags(parentPath, tagPath=None, tagType=None, dataType=None, udtParentT
             isMemory(), isExpression(), isQuery().
     """
     print(parentPath, tagPath, tagType, dataType, udtParentType, recursive, sort)
+    return [BrowseTag()]
 
 
 def read(tagPath):
@@ -66,6 +122,7 @@ def read(tagPath):
             timestamp.
     """
     print tagPath
+    return QualifiedValue()
 
 
 def readAll(tagPaths):
@@ -81,7 +138,10 @@ def readAll(tagPaths):
         given. Each qualified value will have three sub-members: value, quality, and timestamp.
     """
     print(tagPaths)
-    return [1] * len(tagPaths)
+    items = []
+    for i in range(len(tagPaths)):
+        items.append(QualifiedValue())
+    return items
 
 
 def write(tagPath, value, suppressErrors=False):
@@ -92,7 +152,7 @@ def write(tagPath, value, suppressErrors=False):
     Args:
         tagPath (str): The path of the tag to write to.
         value (object): The value to write.
-        suppressErrors (Optional[bool]): A flag indicating whether or not to suppress errors.
+        suppressErrors (bool): A flag indicating whether or not to suppress errors. Optional.
 
     Returns:
         int: 0 if the write failed immediately, 1 if it succeeded immediately, and 2 if it is
@@ -109,7 +169,7 @@ def writeAll(tagPaths, values):
 
     Args:
         tagPaths (list[str]): The paths of the tags to write to.
-        values (list[object[): The values to write.
+        values (list[object]): The values to write.
 
     Returns:
         list[int]: Array of ints with an element for each tag written to: 0 if the write failed

@@ -20,11 +20,11 @@ def swapWindow(swapFromPath, swapToPath, params=None):
         swapFromPath (str): The path of the window to swap from. Must be a currently open window,
             or this will act like an openWindow.
         swapToPath (str): The name of the window to swap to.
-        params (Optional[dict]): A dictionary of parameters to pass into the window. The keys in
-            the dictionary must match dynamic property names on the target window's root container.
-            The values for each key will be used to set those properties.
+        params (dict): A dictionary of parameters to pass into the window. The keys in the
+            dictionary must match dynamic property names on the target window's root container.
+            The values for each key will be used to set those properties. Optional.
 
     Returns:
-        PyObject: A reference to the swapped-to window.
+        object: A reference to the swapped-to window.
     """
     print(swapFromPath, swapToPath, params)

@@ -28,8 +28,8 @@ def confirm(message, title=None, allowCancel=False):
 
     Args:
         message (str): The message to show in the confirmation dialog.
-        title (Optional[str]): The title for the confirmation dialog.
-        allowCancel (Optional[bool]): Show a cancel button in the dialog.
+        title (str): The title for the confirmation dialog. Optional.
+        allowCancel (bool): Show a cancel button in the dialog. Optional.
 
     Returns:
         bool: True (1) if the user selected "Yes", false (0) if the user selected "No", None if the
@@ -48,7 +48,7 @@ def errorBox(message, title=None):
 
     Args:
         message (str): The message to display in an error box.
-        title (Optional[str]): The title for the error box. [optional]
+        title (str): The title for the error box. Optional.
     """
     _dummy(message, title)
 
@@ -58,6 +58,6 @@ def messageBox(message, title=None):
 
     Args:
         message (str): The message to display in an error box.
-        title (Optional[str]): The title for the error box. [optional]
+        title (str): The title for the error box. Optional.
     """
     _dummy(message, title)
